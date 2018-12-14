@@ -1,13 +1,13 @@
-import { Entity, Column, PrimaryColumn, BeforeInsert } from "typeorm";
+import { BaseEntity, Entity, Column, PrimaryColumn, BeforeInsert } from "typeorm";
 import * as uuidv4 from 'uuid/v4';
 
 @Entity()
-export class User {
+export class User extends BaseEntity {
 
     @PrimaryColumn('uuid')
     id: string;
 
-    @Column({length: 50})
+    @Column({length: 50, unique: true})
     email: string;
 
     @Column()

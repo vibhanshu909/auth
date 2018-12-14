@@ -1,32 +1,31 @@
 version: '3'
 services:
-  nginx:
-    image: "nginx:latest"
-    restart: unless-stopped
-    ports:
-      - "4000:80"
-    volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-    depends_on:
-      - app
+  # nginx:
+  #   image: "nginx:latest"
+  #   restart: unless-stopped
+  #   ports:
+  #     - "4000:80"
+  #   volumes:
+  #     - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+  #   depends_on:
+  #     - app
   mysql:
     image: mysql:latest
     restart: unless-stopped
     command: --default-authentication-plugin=mysql_native_password
-    ports:
-      - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=Auth
+      - MYSQL_DATABASE=Auth_testing
       - MYSQL_USER=dev
       - MYSQL_PASSWORD=pandey909
     volumes:
-      - auth-mysql-datavolume:/var/lib/mysql
+      - auth-testing-mysql-datavolume:/var/lib/mysql
   app:
     build:
       dockerfile: Dockerfile
       context: .
+    command: npm run ci
     volumes:
       - .:/app
 volumes:
-  auth-mysql-datavolume:
+  auth-testing-mysql-datavolume:

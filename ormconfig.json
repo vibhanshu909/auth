@@ -1,24 +1,53 @@
-{
-   "type": "mysql",
-   "host": "mysql",
-   "port": 3306,
-   "username": "dev",
-   "password": "pandey909",
-   "database": "Auth",
-   "synchronize": true,
-   "logging": false,
-   "entities": [
-      "src/entity/**/*.ts"
-   ],
-   "migrations": [
-      "src/migration/**/*.ts"
-   ],
-   "subscribers": [
-      "src/subscriber/**/*.ts"
-   ],
-   "cli": {
-      "entitiesDir": "src/entity",
-      "migrationsDir": "src/migration",
-      "subscribersDir": "src/subscriber"
+[
+   {
+      "name": "development",
+      "type": "mysql",
+      "host": "mysql",
+      "port": 3306,
+      "username": "dev",
+      "password": "pandey909",
+      "database": "Auth",
+      "synchronize": true,
+      "logging": true,
+      "entities": [
+         "src/entity/**/*.ts"
+      ],
+      "migrations": [
+         "src/migration/**/*.ts"
+      ],
+      "subscribers": [
+         "src/subscriber/**/*.ts"
+      ],
+      "cli": {
+         "entitiesDir": "src/entity",
+         "migrationsDir": "src/migration",
+         "subscribersDir": "src/subscriber"
+      }
+   },
+   {
+      "name": "testing",
+      "type": "mysql",
+      "host": "mysql",
+      "port": 3306,
+      "username": "dev",
+      "password": "pandey909",
+      "database": "Auth_testing",
+      "synchronize": true,
+      "logging": false,
+      "dropSchema": true,
+      "entities": [
+         "src/entity/**/*.ts"
+      ],
+      "migrations": [
+         "src/migration/**/*.ts"
+      ],
+      "subscribers": [
+         "src/subscriber/**/*.ts"
+      ],
+      "cli": {
+         "entitiesDir": "src/entity",
+         "migrationsDir": "src/migration",
+         "subscribersDir": "src/subscriber"
+      }
    }
-}
+]
