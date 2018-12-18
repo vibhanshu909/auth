@@ -1,20 +1,38 @@
-import { BaseEntity, Entity, Column, PrimaryColumn, BeforeInsert } from "typeorm";
-import * as uuidv4 from 'uuid/v4';
+import { IsEmail, MinLength, validate } from 'class-validator';
+import { BeforeInsert, BeforeUpdate, Column, Entity } from "typeorm";
+
+import Base from './Base';
 
 @Entity()
-export class User extends BaseEntity {
+export class User extends Base {
 
-    @PrimaryColumn('uuid')
-    id: string;
-
-    @Column({length: 50, unique: true})
+    @MinLength(5)
+    @IsEmail()
+    @Column({ nullable: false, length: 50, unique: true, readonly: true })
     email: string;
 
-    @Column()
+    @MinLength(8)
+    @Column({ nullable: false })
     password: string;
 
     @BeforeInsert()
-    addId(){
-        this.id = uuidv4()
+    @BeforeUpdate()
+    async validateOnSave() {
+        const errors = await validate(this)
+        const gqlError: any[] = []
+        // new GraphQLError({data: })
+        if (errors.length > 0) {
+            console.log("validation failed. errors: ", errors);
+            errors.forEach(error => {
+                gqlError.push({ [error.property]: Object.values(error.constraints) })
+            })
+            // throw UserInputError()
+        } else {
+            console.log("validation succeed");
+        }
+        console.log(errors)
+    }
+    toString() {
+        return `${this.id} | ${this.email}`
     }
 }

@@ -4,11 +4,11 @@
 import { Resolvers } from "../graphqlgen";
 
 import { Query } from "./Query";
-import { Mutation } from "./Mutation";
 import { User } from "./User";
+import { Mutation } from "./Mutation";
 
 export const resolvers: Resolvers = {
   Query,
-  Mutation,
-  User
+  User,
+  Mutation
 };

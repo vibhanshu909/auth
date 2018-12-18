@@ -28,5 +28,7 @@ services:
       context: .
     volumes:
       - .:/app
+    depends_on:
+      - mysql
 volumes:
   auth-mysql-datavolume:
