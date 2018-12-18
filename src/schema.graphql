@@ -8,6 +8,10 @@ type Mutation {
   changePassword(email: String!, password: String!, newPassword: String!): User
 }
 
+type Subscription {
+  me: User
+}
+
 type User {
   id: String!
   email: String!

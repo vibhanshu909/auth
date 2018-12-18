@@ -43,7 +43,8 @@ export const startServer = async () => {
   const options: Options = {
     debug: process.env.NODE_ENV === "development",
     tracing: process.env.NODE_ENV === "development",
-    cors: corsOptions
+    cors: corsOptions,
+    // subscriptions: "/ws"
   }
   await server.start(options)
   console.log(`Server is running on localhost:4000`);

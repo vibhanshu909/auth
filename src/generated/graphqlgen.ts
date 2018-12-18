@@ -155,8 +155,45 @@ export namespace MutationResolvers {
   }
 }
 
+export namespace SubscriptionResolvers {
+  export const defaultResolvers = {};
+
+  export type MeResolver = {
+    subscribe: (
+      parent: undefined,
+      args: {},
+      ctx: Context,
+      info: GraphQLResolveInfo
+    ) => AsyncIterator<User | null> | Promise<AsyncIterator<User | null>>;
+    resolve?: (
+      parent: undefined,
+      args: {},
+      ctx: Context,
+      info: GraphQLResolveInfo
+    ) => User | null | Promise<User | null>;
+  };
+
+  export interface Type {
+    me: {
+      subscribe: (
+        parent: undefined,
+        args: {},
+        ctx: Context,
+        info: GraphQLResolveInfo
+      ) => AsyncIterator<User | null> | Promise<AsyncIterator<User | null>>;
+      resolve?: (
+        parent: undefined,
+        args: {},
+        ctx: Context,
+        info: GraphQLResolveInfo
+      ) => User | null | Promise<User | null>;
+    };
+  }
+}
+
 export interface Resolvers {
   Query: QueryResolvers.Type;
   User: UserResolvers.Type;
   Mutation: MutationResolvers.Type;
+  Subscription: SubscriptionResolvers.Type;
 }
